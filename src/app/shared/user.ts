@@ -6,7 +6,6 @@ export class User implements IUser {
   id: string;
 
   constructor(principal) {
-    console.log(principal);
     this.userName = principal.name;
     this.id = principal.id ? principal.id : '';
   }
