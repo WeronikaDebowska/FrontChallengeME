@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+
 import {ApiService} from '../services/api.service';
+import {AuthService} from '../services/auth.service';
 import {User} from '../shared/user';
 
 @Component({
@@ -14,7 +16,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {
   }
 
@@ -26,5 +29,10 @@ export class MainComponent implements OnInit {
         console.log('Authenticate error: ' + error.status);
         this.router.navigate(['/login']);
       });
+  }
+
+  logout() {
+    this.auth.clearToken();
+    this.router.navigate(['/login']);
   }
 }

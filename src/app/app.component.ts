@@ -10,7 +10,6 @@ import {AuthService} from './services/auth.service';
 export class AppComponent implements OnInit {
   title = 'ChallengeME';
 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,

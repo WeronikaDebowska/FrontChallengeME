@@ -16,4 +16,8 @@ export class AuthService {
   public isAuthenticated(): boolean {
     return !!this.getToken();
   }
+
+  public clearToken(): void {
+    sessionStorage.clear();
+  }
 }
