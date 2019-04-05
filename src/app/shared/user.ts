@@ -1,12 +1,18 @@
-import {IUser} from './interfaces';
+export class User {
 
-export class User implements IUser {
-
-  userName: string;
-  id: string;
+  private readonly userName: string;
+  private readonly id: string;
 
   constructor(principal) {
     this.userName = principal.name;
     this.id = principal.id ? principal.id : '';
+  }
+
+  getName() {
+    return this.userName;
+  }
+
+  getId() {
+    return this.id;
   }
 }

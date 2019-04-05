@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {IUser} from '../shared/interfaces';
+import {ILoginData} from '../shared/interfaces';
+import {User} from '../shared/user';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class ApiService {
 
@@ -15,13 +14,11 @@ export class ApiService {
   ) {
   }
 
-  login(user: IUser) {
+  login(user: ILoginData) {
     return this.http.post<Observable<boolean>>(environment.apiEndpoint + 'login', user);
   }
 
   authenticate() {
-    const headers = new HttpHeaders({'Authorization': 'Basic ' + sessionStorage.getItem('token')});
-    const options = {headers: headers};
-    return this.http.post<Observable<IUser>>(environment.apiEndpoint + 'user', {}, options);
+    return this.http.get<Observable<User>>(environment.apiEndpoint + 'user');
   }
 }

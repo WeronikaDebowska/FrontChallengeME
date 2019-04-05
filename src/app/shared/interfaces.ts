@@ -1,6 +1,5 @@
-export interface IUser {
+export interface ILoginData {
   userName: string;
-  id?: string;
   password?: string;
 }
 

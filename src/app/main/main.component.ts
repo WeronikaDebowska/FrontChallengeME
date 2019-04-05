@@ -21,13 +21,10 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.api.authenticate().subscribe(principal => {
         this.user = new User(principal);
-        console.log(this.user);
       },
       error => {
         console.log('Authenticate error: ' + error.status);
-        sessionStorage.clear();
         this.router.navigate(['/login']);
-
       });
   }
 }

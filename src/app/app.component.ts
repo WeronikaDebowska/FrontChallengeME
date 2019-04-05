@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,20 +13,16 @@ export class AppComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {
   }
 
   ngOnInit(): void {
-    if (this.checkSession()) {
+    if (this.auth.isAuthenticated()) {
       this.router.navigate(['/user']);
     } else {
       this.router.navigate(['/login']);
     }
-  }
-
-  checkSession(): boolean {
-    console.log('token ' + sessionStorage.getItem('token'));
-    return !!sessionStorage.getItem('token');
   }
 }
