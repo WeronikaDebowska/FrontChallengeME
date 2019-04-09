@@ -10,11 +10,15 @@ import {SharedModule} from './shared/shared.module';
 import {MainModule} from './main/main.module';
 import {LoginComponent} from './login/login.component';
 import {TokenInterceptor} from './shared/token.interceptor';
+import {LoginFormComponent} from './login/login-form/login-form.component';
+import {RegisterFormComponent} from './login/register-form/register-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

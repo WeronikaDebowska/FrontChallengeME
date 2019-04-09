@@ -4,6 +4,28 @@ h1 {
   margin: 50px;
 }
 
-p {
-  font-family: Raleway;
+h5 {
+  font-size: 1rem;
+}
+
+p, label, h5 {
+  margin: 0;
+}
+
+label {
+  width: 200px;
+}
+
+input {
+  width: 200px;
+}
+
+.invalidInput {
+  font-size: 0.75rem;
+  margin-right: 25px;
+}
+
+.option {
+  font-size: 0.75rem;
+  text-align: center;
 }
