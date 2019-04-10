@@ -22,12 +22,12 @@ import {RegisterFormComponent} from './login/register-form/register-form.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ServicesModule,
     SharedModule,
-    MainModule
+    MainModule,
+    AppRoutingModule,
   ],
   providers: [
     {

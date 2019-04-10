@@ -1,4 +1,24 @@
-<p *ngIf="user">
-  HELLO {{user.getName()}} you are successfully logged!
-</p>
-<button (click)="logout()" type="button" class="btn btn-primary">Logout</button>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <h1 class="navbar-brand">ChallengeME</h1>
+  <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+          data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+
+      <a class="nav-item nav-link" routerLink="/challenges" routerLinkActive="active">My challenges <span
+        class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" routerLink="/profile" routerLinkActive="active">My profile</a>
+      <!--<a class="nav-item nav-link" href="#">Logout</a>-->
+      <button (click)="logout()" class="nav-item btn btn-link" type="button">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<!--<p *ngIf="user">HELLO {{user.getName()}} you are successfully logged!</p>-->
+
+<router-outlet></router-outlet>
+
+
+
