@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ILoginData} from '../../shared/interfaces';
 import {ApiService} from '../../services/api.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
@@ -25,15 +24,17 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     // TODO validate inputs in validation service
-    const loginData: ILoginData = {
-      userName: this.model.username,
-      password: this.model.password
-    };
-    this.api.login(loginData)
-      .subscribe(isValid => {
-        if (isValid) {
-          this.auth.setToken(btoa(loginData.userName + ':' + loginData.password));
-          this.router.navigate(['/main']);
+
+    const formData = new FormData();
+    formData.append('username', this.model.username);
+    formData.append('password', this.model.password);
+
+    this.api.login(formData)
+      .subscribe(response => {
+        if (response) {
+          // this.auth.setToken(btoa(loginData.username + ':' + loginData.password));
+          console.log('login rest: ' + response);
+          // this.router.navigate(['/main']);
         } else {
           alert('Authentication failed.');
         }

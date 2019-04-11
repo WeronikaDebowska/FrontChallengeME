@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {ILoginData} from '../shared/interfaces';
-import {User} from '../shared/user';
 
 @Injectable()
 
@@ -14,11 +12,11 @@ export class ApiService {
   ) {
   }
 
-  login(user: ILoginData) {
-    return this.http.post<Observable<boolean>>(environment.apiEndpoint + 'login', user);
+  login(formData: FormData) {
+    return this.http.post<Observable<any>>(environment.apiEndpoint + 'authorization', formData);
   }
 
-  authenticate() {
-    return this.http.get<Observable<User>>(environment.apiEndpoint + 'user');
-  }
+  // authenticate() {
+  //   return this.http.get<Observable<User>>(environment.apiEndpoint + 'user');
+  // }
 }
