@@ -16,8 +16,4 @@ export class ApiService {
   login(formData: FormData): Observable<User> {
     return this.http.post<User>(environment.apiEndpoint + 'authorization', formData);
   }
-
-  // authenticate() {
-  //   return this.http.get<Observable<User>>(environment.apiEndpoint + 'user');
-  // }
 }

@@ -6,11 +6,11 @@ import {Injectable} from '@angular/core';
 export class AuthService {
 
   public getToken(): string {
-    return sessionStorage.getItem('token');
+    return localStorage.getItem('token');
   }
 
   public setToken(token: string): void {
-    sessionStorage.setItem('token', token);
+    localStorage.setItem('token', token);
   }
 
   public isAuthenticated(): boolean {
@@ -18,6 +18,6 @@ export class AuthService {
   }
 
   public clearToken(): void {
-    sessionStorage.clear();
+    localStorage.clear();
   }
 }
