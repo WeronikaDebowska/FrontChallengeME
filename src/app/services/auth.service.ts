@@ -20,4 +20,8 @@ export class AuthService {
   public clearToken(): void {
     localStorage.clear();
   }
+
+  public getNameFromToken(): string {
+    return atob(this.getToken()).split(':')[0];
+  }
 }

@@ -22,12 +22,19 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.api.authenticate().subscribe(principal => {
+    let username;
+    try {
+      username = this.auth.getNameFromToken();
+    } catch (err) {
+      this.logout();
+    }
+    // console.log('username: ' + username);
+    // username && this.api.getUserData(username).subscribe(principal => {
     //     this.user = new User(principal);
     //   },
     //   error => {
     //     console.log('Authenticate error: ' + error.status);
-    //     this.router.navigate(['/login']);
+    //     this.logout();
     //   });
   }
 

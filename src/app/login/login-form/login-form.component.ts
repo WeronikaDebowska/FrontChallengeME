@@ -25,23 +25,18 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     // TODO validate inputs in validation service
-
     const formData = new FormData();
     formData.append('username', this.model.username);
     formData.append('password', this.model.password);
 
     this.api.login(formData)
       .subscribe((response: User) => {
-        console.log('username: ' + response.username);
-
         if (response.username) {
-          // this.auth.setToken(btoa(loginData.username + ':' + loginData.password));
-          // console.log('login rest: ' + response);
+          this.auth.setToken(btoa(this.model.username + ':' + this.model.password));
           this.router.navigate(['/main']);
         } else {
           alert('Authentication failed.');
         }
       });
   }
-
 }

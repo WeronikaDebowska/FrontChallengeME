@@ -7,12 +7,4 @@ export class User {
     this.username = principal.username;
     this.id = principal.id ? principal.id : '';
   }
-
-  // getName() {
-  //   return this.username;
-  // }
-  //
-  // getId() {
-  //   return this.id;
-  // }
 }
