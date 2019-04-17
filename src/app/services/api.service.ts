@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {User} from '../shared/user';
 
 @Injectable()
 
@@ -12,8 +13,8 @@ export class ApiService {
   ) {
   }
 
-  login(formData: FormData) {
-    return this.http.post<Observable<any>>(environment.apiEndpoint + 'authorization', formData);
+  login(formData: FormData): Observable<User> {
+    return this.http.post<User>(environment.apiEndpoint + 'authorization', formData);
   }
 
   // authenticate() {

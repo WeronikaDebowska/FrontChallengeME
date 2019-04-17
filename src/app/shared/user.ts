@@ -1,18 +1,18 @@
 export class User {
 
-  private readonly userName: string;
-  private readonly id: string;
+  public readonly username: string;
+  public readonly id: string;
 
   constructor(principal) {
-    this.userName = principal.name;
+    this.username = principal.username;
     this.id = principal.id ? principal.id : '';
   }
 
-  getName() {
-    return this.userName;
-  }
-
-  getId() {
-    return this.id;
-  }
+  // getName() {
+  //   return this.username;
+  // }
+  //
+  // getId() {
+  //   return this.id;
+  // }
 }

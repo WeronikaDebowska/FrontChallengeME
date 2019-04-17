@@ -10,15 +10,19 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const re = /login/gi;
-    // Exclude interceptor for login request:
-    if (request.url.search(re) === -1) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Basic ${this.auth.getToken()}`
-        }
+
+    request = request.clone({
+      withCredentials: true
       });
-    }
+    // const re = /login/gi;
+    // // Exclude interceptor for login request:
+    // if (request.url.search(re) === -1) {
+    //   request = request.clone({
+    //     setHeaders: {
+    //       Authorization: `Basic ${this.auth.getToken()}`
+    //     }
+    //   });
+    // }
     return next.handle(request);
   }
 }
