@@ -1,20 +1,20 @@
-<div class="card text-center mt-4">
+<div class="card text-center mt-4 mb-4">
   <div class="card-header">
-    Your challenges
+    <h4 class="mb-0">Challenges</h4>
   </div>
   <div class="card-body">
+    <div>Add new</div>
+    <div>Sort section</div>
     <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
-    <p class="card-text">challenges works!</p>
+    <div *ngFor="let challenge of this.user.challenges" class="card border-primary mb-3 challengeCard"
+         style="max-width: 18rem;">
+      <div class="card-header">{{challenge.challengeName | uppercase}}</div>
+      <div class="card-body text-primary">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+      </div>
+    </div>
     <a class="btn btn-primary" href="#">Go somewhere</a>
   </div>
   <div class="card-footer text-muted">
