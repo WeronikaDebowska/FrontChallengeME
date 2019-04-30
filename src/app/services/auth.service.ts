@@ -21,7 +21,11 @@ export class AuthService {
     localStorage.clear();
   }
 
-  public getNameFromToken(): string {
+  public getUserName(): string {
     return atob(this.getToken()).split(':')[0];
+  }
+
+  public getUserId(): string {
+    return atob(this.getToken()).split(':')[2];
   }
 }

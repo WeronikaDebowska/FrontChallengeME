@@ -3,7 +3,8 @@ import {Router} from '@angular/router';
 
 import {ApiService} from '../services/api.service';
 import {AuthService} from '../services/auth.service';
-import {User} from '../shared/user';
+import {UserService} from '../services/user.service';
+import {IChallenge} from '../shared/interfaces';
 
 @Component({
   selector: 'app-main',
@@ -12,9 +13,8 @@ import {User} from '../shared/user';
 })
 export class MainComponent implements OnInit {
 
-  user: User;
-
   constructor(
+    public user: UserService,
     private api: ApiService,
     private router: Router,
     private auth: AuthService
@@ -22,24 +22,33 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    let username;
-    try {
-      username = this.auth.getNameFromToken();
-    } catch (err) {
+    const userId = this.auth.getUserId();
+    if (userId) {
+      this.setUserDetails();
+      this.loadChallenges(userId);
+    } else {
       this.logout();
     }
-    // console.log('username: ' + username);
-    // username && this.api.getUserData(username).subscribe(principal => {
-    //     this.user = new User(principal);
-    //   },
-    //   error => {
-    //     console.log('Authenticate error: ' + error.status);
-    //     this.logout();
-    //   });
   }
 
-  logout() {
+  logout(): void {
     this.auth.clearToken();
     this.router.navigate(['/login']);
+  }
+
+  setUserDetails(): void {
+    this.user.setUsername(this.auth.getUserName());
+    this.user.setId(this.auth.getUserId());
+  }
+
+  loadChallenges(id: string): void {
+    this.api.getUserChallenges(id).subscribe((challenges: IChallenge []) => {
+        console.log(challenges);
+        this.user.setChallenges(challenges);
+      },
+      err => {
+        // Todo info could not load challenges
+        this.api.handleError(err);
+      });
   }
 }

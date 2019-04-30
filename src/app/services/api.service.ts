@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {User} from '../shared/user';
+import {IChallenge, IUser} from '../shared/interfaces';
 
 @Injectable()
 
@@ -13,11 +13,16 @@ export class ApiService {
   ) {
   }
 
-  login(formData: FormData): Observable<User> {
-    return this.http.post<User>(environment.apiEndpoint + 'authorization', formData);
+  login(formData: FormData): Observable<IUser> {
+    return this.http.post<IUser>(environment.apiEndpoint + 'authorization', formData);
   }
 
-  getUserData(username: String): Observable<User> {
-    return this.http.get<User>(environment.apiEndpoint + `users/${username}`);
+  getUserChallenges(id: String): Observable<IChallenge []> {
+    return this.http.get<IChallenge []>(environment.apiEndpoint + `users/${id}/challenges`);
+  }
+
+  handleError(err) {
+    // TODO
+    console.log(err);
   }
 }

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {ApiService} from './api.service';
 import {AuthService} from './auth.service';
+import {UserService} from './user.service';
 
 @NgModule({
   declarations: [],
@@ -11,7 +12,8 @@ import {AuthService} from './auth.service';
   ],
   providers: [
     ApiService,
-    AuthService
+    AuthService,
+    UserService
   ]
 })
 export class ServicesModule {

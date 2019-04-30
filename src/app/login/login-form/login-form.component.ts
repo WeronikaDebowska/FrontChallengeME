@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {User} from '../../shared/user';
+import {UserService} from '../../services/user.service';
+import {IUser} from '../../shared/interfaces';
 
 @Component({
   selector: 'app-login-form',
@@ -14,9 +15,10 @@ export class LoginFormComponent implements OnInit {
   model: any = {};
 
   constructor(
+    public user: UserService,
     private api: ApiService,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
   ) {
   }
 
@@ -30,13 +32,14 @@ export class LoginFormComponent implements OnInit {
     formData.append('password', this.model.password);
 
     this.api.login(formData)
-      .subscribe((response: User) => {
-        if (response.username) {
-          this.auth.setToken(btoa(this.model.username + ':' + this.model.password));
+      .subscribe((response: IUser) => {
+        if (response.id) {
+          this.auth.setToken(btoa(this.model.username + ':' + this.model.password + ':' + response.id));
           this.router.navigate(['/main']);
         } else {
+          // TODO info about wrong user data
           alert('Authentication failed.');
         }
-      });
+      }, err => this.api.handleError(err));
   }
 }
