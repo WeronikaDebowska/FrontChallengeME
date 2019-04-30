@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   handleError(err) {
-    // TODO
+    // TODO error handling for different error codes
     console.log(err);
   }
 }

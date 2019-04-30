@@ -3,3 +3,19 @@ h1 {
   font-size: 2rem;
   margin: 0 10px;
 }
+
+.navbar-brand:hover {
+  color: var(--primary);
+  transition: color .3s;
+}
+
+.icon {
+  fill: var(--primary);
+  width: 30px;
+  height: 30px;
+}
+
+.icon:hover {
+  transition: fill .3s;
+  fill: var(--secondary)
+}

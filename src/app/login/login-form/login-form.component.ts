@@ -35,7 +35,7 @@ export class LoginFormComponent implements OnInit {
       .subscribe((response: IUser) => {
         if (response.id) {
           this.auth.setToken(btoa(this.model.username + ':' + this.model.password + ':' + response.id));
-          this.router.navigate(['/main']);
+          this.router.navigate(['/challenges']);
         } else {
           // TODO info about wrong user data
           alert('Authentication failed.');
