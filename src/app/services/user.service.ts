@@ -21,4 +21,10 @@ export class UserService implements IUser {
   setChallenges(challenges: IChallenge []): void {
     this.challenges = challenges;
   }
+
+  getChallenges(): IChallenge[] {
+    return this.challenges;
+  }
+
+
 }

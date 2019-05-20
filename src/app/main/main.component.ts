@@ -43,7 +43,6 @@ export class MainComponent implements OnInit {
 
   loadChallenges(id: string): void {
     this.api.getUserChallenges(id).subscribe((challenges: IChallenge []) => {
-        console.log(challenges);
         this.user.setChallenges(challenges);
       },
       err => {
