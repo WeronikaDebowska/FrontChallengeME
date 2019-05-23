@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {ApiService} from './api.service';
 import {AuthService} from './auth.service';
 import {UserService} from './user.service';
+import {TimestampService} from './timestamp.service';
 
 @NgModule({
   declarations: [],
@@ -13,7 +14,8 @@ import {UserService} from './user.service';
   providers: [
     ApiService,
     AuthService,
-    UserService
+    UserService,
+    TimestampService
   ]
 })
 export class ServicesModule {
