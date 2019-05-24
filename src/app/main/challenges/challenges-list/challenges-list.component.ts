@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IUser} from '../../../shared/interfaces';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TimestampService} from '../../../services/timestamp.service';
 
 
@@ -10,7 +9,8 @@ import {TimestampService} from '../../../services/timestamp.service';
 })
 export class ChallengesListComponent implements OnInit {
 
-  @Input() user: IUser;
+  @Input() challengesList: any;
+  @Output() tagSelectEvent = new EventEmitter<string>();
 
   constructor(
     private timestamp: TimestampService
@@ -18,7 +18,10 @@ export class ChallengesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.user);
+  }
+
+  filterTag(tag) {
+    this.tagSelectEvent.emit(tag);
   }
 
   getBcgColor(status: string, startTimestamp: string, finishTimestamp: string): string {

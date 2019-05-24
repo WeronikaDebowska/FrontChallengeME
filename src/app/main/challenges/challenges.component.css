@@ -1,3 +1,28 @@
-.challengeCard {
+.challengesContainer {
+  min-width: 303px;
+}
 
+.filters {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.filtersElement {
+  min-width: 280px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+select {
+  width: 135px;
+}
+
+.filtersElement input {
+  width: 180px;
 }

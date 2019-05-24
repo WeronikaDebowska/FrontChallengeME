@@ -1,4 +1,4 @@
-<div class="card text-center mt-4 mb-4">
+<div class="card text-center mt-4 mb-4 challengesContainer">
   <div class="card-header">
     <h4 class="mb-0">Challenges</h4>
   </div>
@@ -7,9 +7,50 @@
       <a class="btn btn-primary mb-4" href="#">Add new challenge</a>
     </div>
 
-    <p>search section</p>
+    <div class="filters">
+      <div class="filtersElement">
+        <button (click)="resetFilters()"
+                class="btn btn-link"
+                type="button">Show All
+        </button>
 
-    <app-challenges-list [user]="user"></app-challenges-list>
+        <input (change)="filter()"
+               class="form-control mr-sm-2"
+               id="search"
+               placeholder="Search..."
+               type="search">
+      </div>
+      <div class="filtersElement">
+        <select
+          (change)="filter()"
+          class="custom-select"
+          id="activity">
+          <option
+            *ngFor="let activity of activities"
+            value="{{activity}}">{{activity | titlecase}}
+          </option>
+        </select>
+
+        <select
+          (change)="filter()"
+          class="custom-select"
+          id="status">
+          <option
+            *ngFor="let status of statuses"
+            value="{{status}}">{{status | titlecase}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="challengesList.length==0">
+      <p class="mt-4">No challenges found.</p>
+    </div>
+
+    <app-challenges-list
+      (tagSelectEvent)="filterTag($event)"
+      [challengesList]="challengesList">
+    </app-challenges-list>
   </div>
   <div class="card-footer text-muted">
     ChallemgeME2019 footer

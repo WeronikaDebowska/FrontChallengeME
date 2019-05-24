@@ -1,4 +1,4 @@
-<div *ngFor="let challenge of this.user.challenges" class="challengeElement">
+<div *ngFor="let challenge of challengesList" class="challengeElement">
   <div class="challengeDetails">
     <div class="challengeTitle">
       {{challenge.challengeName | uppercase}}
@@ -49,7 +49,8 @@
     </div>
   </div>
   <div class="challengeTags">
-    <button *ngFor="let tag of challenge.tagList" class="btn btn-link" type="button">#{{tag}}</button>
+    <button (click)="filterTag(tag)" *ngFor="let tag of challenge.tagList" class="btn btn-link" type="button">
+      #{{tag}}</button>
   </div>
 
 </div>

@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {ApiService} from '../services/api.service';
 import {AuthService} from '../services/auth.service';
 import {UserService} from '../services/user.service';
-import {IChallenge} from '../shared/interfaces';
 
 @Component({
   selector: 'app-main',
@@ -25,7 +24,6 @@ export class MainComponent implements OnInit {
     const userId = this.auth.getUserId();
     if (userId) {
       this.setUserDetails();
-      this.loadChallenges(userId);
     } else {
       this.logout();
     }
@@ -39,15 +37,5 @@ export class MainComponent implements OnInit {
   setUserDetails(): void {
     this.user.setUsername(this.auth.getUserName());
     this.user.setId(this.auth.getUserId());
-  }
-
-  loadChallenges(id: string): void {
-    this.api.getUserChallenges(id).subscribe((challenges: IChallenge []) => {
-        this.user.setChallenges(challenges);
-      },
-      err => {
-        // Todo info could not load challenges
-        this.api.handleError(err);
-      });
   }
 }
