@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TimestampService} from '../../../services/timestamp.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class ChallengesListComponent implements OnInit {
   @Output() tagSelectEvent = new EventEmitter<string>();
 
   constructor(
-    private timestamp: TimestampService
+    private timestamp: TimestampService,
+    private router: Router
   ) {
   }
 
@@ -45,5 +47,9 @@ export class ChallengesListComponent implements OnInit {
         color = 'var(--warning)';
     }
     return color;
+  }
+
+  showChallenge(id: string): void {
+    this.router.navigate([`/challenge/${id}/executions`]);
   }
 }

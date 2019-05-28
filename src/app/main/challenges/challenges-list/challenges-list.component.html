@@ -1,7 +1,9 @@
 <div *ngFor="let challenge of challengesList" class="challengeElement">
   <div class="challengeDetails">
-    <div class="challengeTitle">
+    <div (click)="showChallenge(challenge.challengeId)" class="challengeTitle">
+
       {{challenge.challengeName | uppercase}}
+
     </div>
     <div class="challengeIcons">
 

@@ -27,6 +27,7 @@
   vertical-align: center;
   line-height: 50px;
   text-align: start;
+  cursor: pointer;
 }
 
 .challengeIcons svg {
