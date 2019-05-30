@@ -7,6 +7,8 @@ import {ExecutionsComponent} from './executions/executions.component';
 import {EditComponent} from './edit/edit.component';
 import {ChallengeComponent} from './challenge.component';
 import {MainRoutingModule} from '../main-routing';
+import {NgCircleProgressModule} from 'ng-circle-progress';
+import {ChallengeService} from './challenge.service';
 
 
 @NgModule({
@@ -20,6 +22,20 @@ import {MainRoutingModule} from '../main-routing';
   imports: [
     CommonModule,
     MainRoutingModule,
+    NgCircleProgressModule.forRoot({
+      'radius': 25,
+      'space': -5,
+      'maxPercent': 100,
+      'outerStrokeWidth': 5,
+      'outerStrokeColor': '#c2286f',
+      'innerStrokeColor': '#cec9cb',
+      'innerStrokeWidth': 5,
+      'showBackground': false,
+      'showSubtitle': false,
+    })
+  ],
+  providers: [
+    ChallengeService
   ]
 })
 export class ChallengeModule {

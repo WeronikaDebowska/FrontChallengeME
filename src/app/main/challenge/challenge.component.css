@@ -1,0 +1,25 @@
+.challengeCard {
+  min-width: 303px;
+}
+
+.challengeCardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.challengeCardHeader h4 {
+  align-self: center;
+}
+
+.duration, .status {
+  text-align: start;
+  margin: 0;
+}
+
+.duration {
+  color: var(--secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+

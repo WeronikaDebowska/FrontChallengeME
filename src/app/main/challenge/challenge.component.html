@@ -1,6 +1,14 @@
-<div class="card text-center mt-4 mb-4 challengesContainer">
-  <div class="card-header">
-    <h4 class="mb-0">Challenges</h4>
+<div class="card text-center mt-4 mb-4 challengesContainer challengeCard">
+  <div class="card-header challengeCardHeader">
+    <div>
+      <h4 class="mb-0">{{challengeService.challengeDetails.challengeName | uppercase}}</h4>
+      <p class="status">Status: {{statusMessage}} </p>
+      <p class="duration">Start: {{challengeService.challengeDetails.start | date: 'dd MMM yyyy'}}</p>
+      <p class="duration">Finish: {{challengeService.challengeDetails.finish |  date: 'dd MMM yyyy'}}</p>
+    </div>
+
+    <circle-progress [percent]="challengeService.challengeDetails.accomplishmentPercentage">
+    </circle-progress>
   </div>
   <div class="card-body">
 
