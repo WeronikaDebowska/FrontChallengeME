@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ChallengeService} from '../challenge.service';
 
 @Component({
   selector: 'app-participants',
@@ -7,10 +8,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ParticipantsComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    public challengeService: ChallengeService) {
   }
 
   ngOnInit() {
   }
+
+  round(value) {
+    return Math.floor(value);
+  }
+
 
 }

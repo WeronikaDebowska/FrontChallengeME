@@ -40,14 +40,16 @@ export class ChallengeComponent implements OnInit {
   setStatus(): void {
     const hasStarted = this.timestamp.isBefore(this.challengeService.challengeDetails.start);
     const hasFinished = this.timestamp.isBefore(this.challengeService.challengeDetails.finish);
+    console.log(hasStarted);
+    console.log(hasFinished);
     this.challengeService.setStatus(true);
     if (hasFinished) {
       this.statusMessage = 'FINISHED';
-    }
-    if (!hasStarted) {
+    } else if (!hasStarted) {
       this.statusMessage = 'EXPECTED';
+    } else {
+      this.challengeService.setStatus(true);
+      this.statusMessage = 'ACTIVE';
     }
-    this.challengeService.setStatus(true);
-    this.statusMessage = 'ACTIVE';
   }
 }

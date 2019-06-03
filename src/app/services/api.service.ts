@@ -21,6 +21,14 @@ export class ApiService {
     return this.http.get<IChallenge []>(environment.apiEndpoint + `users/${id}/challenges`);
   }
 
+  // getChallengeExercises(id: string): Observable<IExerciseResponce> {
+  //   return this.http.get<IExerciseResponce>(environment.apiEndpoint + `challenges/${id}/exercises`);
+  // }
+  //
+  // getChallengeParticipants(id: string): Observable<IParticipantsResponce> {
+  //   return this.http.get<IParticipantsResponce>(environment.apiEndpoint + `challenges/${id}/participants`);
+  // }
+
   handleError(err) {
     // TODO error handling for different error codes
     console.log(err);

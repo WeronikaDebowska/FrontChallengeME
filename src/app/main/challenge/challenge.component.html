@@ -1,13 +1,15 @@
 <div class="card text-center mt-4 mb-4 challengesContainer challengeCard">
   <div class="card-header challengeCardHeader">
     <div>
-      <h4 class="mb-0">{{challengeService.challengeDetails.challengeName | uppercase}}</h4>
-      <p class="status">Status: {{statusMessage}} </p>
+      <h4 class="mb-0">{{challengeService.challengeDetails.challengeName | uppercase}}
+        <span
+          class="badge badge-{{statusMessage === 'ACTIVE' ? 'primary' : statusMessage === 'EXPECTED' ? 'teal' : 'secondary' }}">{{statusMessage}}</span>
+      </h4>
       <p class="duration">Start: {{challengeService.challengeDetails.start | date: 'dd MMM yyyy'}}</p>
       <p class="duration">Finish: {{challengeService.challengeDetails.finish |  date: 'dd MMM yyyy'}}</p>
     </div>
 
-    <circle-progress [percent]="challengeService.challengeDetails.accomplishmentPercentage">
+    <circle-progress [percent]="challengeService.challengeDetails.challengeRealisation">
     </circle-progress>
   </div>
   <div class="card-body">

@@ -48,71 +48,14 @@ export class ChallengesComponent implements OnInit {
   }
 
   loadChallenges(id: string): void {
-    const x = [
-      {
-        'challengeName': 'brazylijskie pośladki',
-        'challengeId': 1,
-        'userRole': 'host',
-        'challengeStatus': 'accepted',
-        'start': '2018-12-31T23:00:00.000+0000',
-        'finish': '2019-03-30T23:00:00.000+0000',
-        'accomplishmentPercentage': 50,
-        'tagList': [
-          'Buttocks',
 
-        ]
+    this.api.getUserChallenges(id).subscribe((challenges: IChallenge []) => {
+        this.user.setChallenges(challenges);
+        this.resetFilters();
       },
-      {
-        'challengeName': '6-cio pak w trzy dni',
-        'challengeId': 1,
-        'userRole': 'participant',
-        'challengeStatus': 'rejected',
-        'start': '2019-04-27T23:00:00.000+0000',
-        'finish': '2019-04-30T23:00:00.000+0000',
-        'accomplishmentPercentage': 50,
-        'tagList': [
-
-          'Strength'
-        ]
-      },
-      {
-        'challengeName': 'talia osy',
-        'challengeId': 3,
-        'userRole': 'participant',
-        'challengeStatus': 'accepted',
-        'start': '2019-01-01T09:23:54.000+0000',
-        'finish': '2019-09-29T22:00:00.000+0000',
-        'accomplishmentPercentage': 50,
-        'tagList': [
-          'Buttocks',
-          'Strength'
-        ]
-      },
-      {
-        'challengeName': 'skalpel',
-        'challengeId': 3,
-        'userRole': 'host',
-        'challengeStatus': 'pending',
-        'start': '2019-07-01T09:23:54.000+0000',
-        'finish': '2019-011-29T22:00:00.000+0000',
-        'accomplishmentPercentage': 50,
-        'tagList': [
-          'Buttocks',
-          'Strength'
-        ]
-      }
-    ];
-    this.user.setChallenges(x);
-    this.challengesList = x;
-
-    //   this.api.getUserChallenges(id).subscribe((challenges: IChallenge []) => {
-    //       this.user.setChallenges(challenges);
-    //       this.resetFilters();
-    //     },
-    //     err => {
-    //       // Todo info could not load challenges
-    //       this.api.handleError(err);
-    //     });
+      err => {
+        this.api.handleError(err);
+      });
   }
 
   private search(list: IChallenge[], text: string): IChallenge[] {
