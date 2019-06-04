@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {IChallenge, IParticipant} from '../../shared/interfaces';
+import {IChallenge, IExercise, IParticipant} from '../../shared/interfaces';
 import {UserService} from '../../services/user.service';
+import {ApiService} from '../../services/api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,45 +9,36 @@ import {UserService} from '../../services/user.service';
 export class ChallengeService {
 
   challengeDetails: IChallenge;
-  executions: any;
-  participants: IParticipant [];
-  exercises: any;
-  status: boolean;
 
   constructor(
-    public user: UserService
+    public user: UserService,
+    public apiService: ApiService,
   ) {
   }
 
   loadChallengeDetails(id: string): void {
     this.challengeDetails = this.user.challenges.find(challenge => challenge.challengeId === +id);
+  }
 
-    this.participants = [
-      {
-        username: 'Snieżka',
-        challengeRealisation: 120,
-        challengeRole: 'host'
+  loadParticipants(): void {
+    this.apiService.getPartocipantsForChallenge(this.challengeDetails.challengeId).subscribe((participants: IParticipant []) => {
+        this.challengeDetails.participants = participants;
       },
-      {
-        username: 'Pocahontas Pocahontas',
-        challengeRealisation: 23.5,
-        challengeRole: 'participant'
+      err => {
+        this.apiService.handleError(err);
+      });
+  }
+
+  loadExercises(): void {
+    this.apiService.getExercisesForChallenge(this.challengeDetails.challengeId).subscribe((exercises: IExercise []) => {
+        this.challengeDetails.exercises = exercises;
       },
-      {
-        username: 'Ariel',
-        challengeRealisation: 49.5776543,
-        challengeRole: 'participant'
-      },
-      {
-        username: 'a',
-        challengeRealisation: 92.234,
-        challengeRole: 'participant'
-      },
-    ];
+      err => {
+        this.apiService.handleError(err);
+      });
   }
 
   setStatus(status: boolean): void {
-    this.status = status;
+    this.challengeDetails.status = status;
   }
-
 }

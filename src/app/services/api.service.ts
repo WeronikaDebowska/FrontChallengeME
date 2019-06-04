@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {IChallenge, IUser} from '../shared/interfaces';
+import {IChallenge, IExercise, IParticipant, IUser} from '../shared/interfaces';
 
 @Injectable()
 
@@ -18,16 +18,16 @@ export class ApiService {
   }
 
   getUserChallenges(id: String): Observable<IChallenge []> {
-    return this.http.get<IChallenge []>(environment.apiEndpoint + `users/${id}/challenges`);
+    return this.http.get<IChallenge []>(`${environment.apiEndpoint}users/${id}/challenges`);
   }
 
-  // getChallengeExercises(id: string): Observable<IExerciseResponce> {
-  //   return this.http.get<IExerciseResponce>(environment.apiEndpoint + `challenges/${id}/exercises`);
-  // }
-  //
-  // getChallengeParticipants(id: string): Observable<IParticipantsResponce> {
-  //   return this.http.get<IParticipantsResponce>(environment.apiEndpoint + `challenges/${id}/participants`);
-  // }
+  getPartocipantsForChallenge(id: number): Observable<IParticipant []> {
+    return this.http.get<IParticipant []>(`${environment.apiEndpoint}challenges/${id}/participants`);
+  }
+
+  getExercisesForChallenge(id: number): Observable<IExercise []> {
+    return this.http.get<IExercise []>(`${environment.apiEndpoint}challenges/${id}/exercises`);
+  }
 
   handleError(err) {
     // TODO error handling for different error codes

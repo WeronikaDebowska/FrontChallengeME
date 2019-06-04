@@ -11,8 +11,11 @@ export interface IChallenge {
   challengeStatus: string;
   start: string;
   finish: string;
-  challengeRealisation: number;
+  challengeRealization: number;
   tagList: string[];
+  participants: IParticipant [];
+  exercises: IExercise [];
+  status: boolean;
 }
 
 export interface IExercise {
@@ -25,7 +28,7 @@ export interface IExercise {
 
 export interface IParticipant {
   username: string;
-  challengeRealisation: number;
+  challengeRealization: number;
   challengeRole: string;
 }
 

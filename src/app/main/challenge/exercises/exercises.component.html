@@ -1,3 +1,24 @@
-<p>
-  exercises works!
-</p>
+<div class="exercisesList">
+  <table *ngIf="challengeService.challengeDetails.exercises; else loading" class="table">
+    <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Exercise</th>
+      <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngIf="challengeService.challengeDetails.exercises.length === 0">
+      <td colspan="3">There is no exercises yet.</td>
+    </tr>
+    <tr *ngFor="let exercise of challengeService.challengeDetails.exercises; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{exercise.exerciseName}}</td>
+      <td>{{exercise.exerciseDescription ? exercise.exerciseDescription : "-"}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-template #loading>
+    <div class="loader"></div>
+  </ng-template>
+</div>
