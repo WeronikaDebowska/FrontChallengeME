@@ -1,5 +1,5 @@
 <div class="participantsList">
-  <table class="table">
+  <table *ngIf="challengeService.challengeDetails.participants; else loading" class="table">
     <thead>
     <tr>
       <th scope="col">Place</th>
@@ -8,10 +8,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let participant of challengeService.participants; let i = index">
+    <tr *ngFor="let participant of challengeService.challengeDetails.participants; let i = index">
       <td>{{i + 1}}</td>
       <td>
-        <svg *ngIf="participant.challengeRealisation >= 100" class="laurel"
+        <svg *ngIf="participant.challengeRealization >= 100" class="laurel"
              style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;" version="1.1"
              viewBox="0 0 48 42">
           <g>
@@ -104,15 +104,18 @@
       </td>
       <td>
         <div class="progress" style="height: 20px;">
-          <div [ngStyle]="{'width': participant.challengeRealisation + '%'}"
+          <div [ngStyle]="{'width': participant.challengeRealization + '%'}"
                aria-valuemax="100"
                aria-valuemin="0"
                class="progress-bar"
-               role="progressbar">{{round(participant.challengeRealisation)}}%
+               role="progressbar">{{round(participant.challengeRealization)}}%
           </div>
         </div>
       </td>
     </tr>
     </tbody>
   </table>
+  <ng-template #loading>
+    <div class="loader"></div>
+  </ng-template>
 </div>

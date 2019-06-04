@@ -13,11 +13,12 @@ export class ParticipantsComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.challengeService.challengeDetails.participants) {
+      this.challengeService.loadParticipants();
+    }
   }
 
   round(value) {
     return Math.floor(value);
   }
-
-
 }
