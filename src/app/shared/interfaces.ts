@@ -39,3 +39,8 @@ export interface IExecution {
   repeats: number;
 }
 
+export interface ITag {
+  id: number;
+  name: string;
+}
+

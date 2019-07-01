@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {IChallenge, IExercise, IParticipant, IUser} from '../shared/interfaces';
+import {IChallenge, IExercise, IParticipant, ITag, IUser} from '../shared/interfaces';
 
 @Injectable()
 
@@ -32,6 +32,10 @@ export class ApiService {
   getExecutionsForChallenge(userId: string, challId: number): Observable<{ [key: number]: { [key: number]: number } }> {
     return this.http.get<{ [key: number]: { [key: number]: number } }>
     (`${environment.apiEndpoint}users/${userId}/challenges/${challId}/executions`);
+  }
+
+  getTags(): Observable<ITag[]> {
+    return this.http.get<any []>(`${environment.apiEndpoint}tags`);
   }
 
   deleteChallenge(id: number): Observable<{}> {

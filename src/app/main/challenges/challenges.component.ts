@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {IChallenge} from '../../shared/interfaces';
+import {IChallenge, ITag} from '../../shared/interfaces';
 
 import {ApiService} from '../../services/api.service';
 import {TimestampService} from '../../services/timestamp.service';
@@ -21,6 +21,7 @@ export class ChallengesComponent implements OnInit {
   statusSelectField;
   activitySelectField;
   createMode;
+  tags: ITag [];
 
 
   constructor(
@@ -114,6 +115,15 @@ export class ChallengesComponent implements OnInit {
 
   private switchMode(): void {
     this.createMode = !this.createMode;
+  }
+
+  loadTags(): void {
+    this.api.getTags().subscribe((tags: ITag []) => {
+        this.tags = tags;
+      },
+      err => {
+        // TODO
+      });
   }
 
 }

@@ -1,8 +1,7 @@
-<div class="card text-center mt-4 mb-4 challengesContainer">
+<div class="card mt-4 mb-4 challengesContainer">
   <div class="card-header">
     <h5 class="mb-0">Create new challenge</h5>
   </div>
-  <div>
     <form [formGroup]="saveChallengeForm" (ngSubmit)="onSubmit(saveChallengeForm.value)">
 
       <div>
@@ -11,15 +10,26 @@
       </div>
 
       <div>
-        <label>Set start date </label>
+        <label>Start date </label>
         <input type="date" formControlName="start">
       </div>
 
       <div>
-        <label>Set finish date </label>
+        <label>Finish date </label>
         <input type="date" formControlName="finish">
       </div>
-      <button class="btn btn-primary mb-4" type="submit">Save</button>
+
+      <div>
+        <label>Tags </label>
+      </div>
+      <div>
+        <span *ngFor="let challTag of challenges.tags">
+          <input type="checkbox" formControlName="tag"> {{challTag.name}}</span>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-primary mb-4" type="submit">Save</button>
+      </div>
+
     </form>
   </div>
-</div>
