@@ -1,3 +1,25 @@
-<p>
-  create works!
-</p>
+<div class="card text-center mt-4 mb-4 challengesContainer">
+  <div class="card-header">
+    <h5 class="mb-0">Create new challenge</h5>
+  </div>
+  <div>
+    <form [formGroup]="saveChallengeForm" (ngSubmit)="onSubmit(saveChallengeForm.value)">
+
+      <div>
+        <label>Challenge name </label>
+        <input type="text" formControlName="name">
+      </div>
+
+      <div>
+        <label>Set start date </label>
+        <input type="date" formControlName="start">
+      </div>
+
+      <div>
+        <label>Set finish date </label>
+        <input type="date" formControlName="finish">
+      </div>
+      <button class="btn btn-primary mb-4" type="submit">Save</button>
+    </form>
+  </div>
+</div>

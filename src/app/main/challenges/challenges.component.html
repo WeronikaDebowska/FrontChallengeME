@@ -3,9 +3,16 @@
     <h4 class="mb-0">Challenges</h4>
   </div>
   <div class="card-body">
-    <div>
-      <a class="btn btn-primary mb-4" href="#">Add new challenge</a>
+
+    <div *ngIf="createMode;else addNewChallengeButton">
+      <app-create></app-create>
+      <button class="btn btn-warning mb-4" (click)="switchMode()">Back</button>
+
     </div>
+    <ng-template #addNewChallengeButton>
+      <button class="btn btn-primary mb-4" (click)="switchMode()">Add new challenge</button>
+    </ng-template>
+
 
     <div class="filters">
       <div class="filtersElement">

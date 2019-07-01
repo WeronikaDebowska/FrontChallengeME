@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ExercisesComponent} from './exercises/exercises.component';
 import {ParticipantsComponent} from './participants/participants.component';
 import {StatsComponent} from './stats/stats.component';
@@ -22,6 +23,8 @@ import {ChallengeService} from './challenge.service';
   imports: [
     CommonModule,
     MainRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgCircleProgressModule.forRoot({
       'radius': 25,
       'space': -5,

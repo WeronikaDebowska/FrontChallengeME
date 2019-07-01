@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TimestampService} from '../../../services/timestamp.service';
+import {ApiService} from '../../../services/api.service';
 import {Router} from '@angular/router';
 
 
@@ -15,6 +16,7 @@ export class ChallengesListComponent implements OnInit {
 
   constructor(
     private timestamp: TimestampService,
+    private api: ApiService,
     private router: Router
   ) {
   }
@@ -52,4 +54,14 @@ export class ChallengesListComponent implements OnInit {
   showChallenge(id: string): void {
     this.router.navigate([`/challenge/${id}/executions`]);
   }
+
+  deleteChallenge(id: number): void {
+    console.log('deleting');
+    this.api.deleteChallenge(id).subscribe();    // TODO sth went wrong with cascade
+  }
+
+  editChallenge(id: number): void {
+    console.log('editing');   // TODO navigate to challenge with "edition mode" etc.
+  }
+
 }

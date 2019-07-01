@@ -22,10 +22,12 @@ export class AuthService {
   }
 
   public getUserName(): string {
-    return atob(this.getToken()).split(':')[0];
+    // return atob(this.getToken()).split(':')[0];    //TODO HERE
+    return 'Minnie';
   }
 
   public getUserId(): string {
-    return atob(this.getToken()).split(':')[2];
+    // return atob(this.getToken()).split(':')[2];   //TODO HERE
+    return '5';
   }
 }

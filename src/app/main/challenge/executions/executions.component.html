@@ -1,3 +1,54 @@
-<p>
-  executions works!
-</p>
+<div *ngIf="createMode;else addExecButton">
+  <div *ngIf="challengeService.challengeDetails.exercises; else loading">
+    <form [formGroup]="executionForm" (ngSubmit)="addExecution(executionForm.value)">
+
+      <div>
+        <label>Exercise </label>
+        <select formControlName="exerciseId">
+          <option *ngFor="let exercise of challengeService.challengeDetails.exercises" value="{{exercise.exerciseId}}">
+            {{exercise.exerciseName}}
+          </option>
+        </select>
+
+        <label>Date </label>
+        <input type="date" formControlName="date">
+
+        <label>Repeats </label>
+        <input type="number" formControlName="repeats">
+      </div>
+      <button class="btn btn-primary mb-4" type="submit">Save</button>
+
+
+    </form>
+  </div>
+</div>
+
+<ng-template #addExecButton>
+  <button class="btn btn-primary mb-4" (click)="switchMode()">Add execution</button>
+</ng-template>
+
+
+<table *ngIf="challengeService.executions; else loading" class="table">
+  <thead>
+  <tr>
+    <th scopde="col">date</th>
+    <th *ngFor="let exer of challengeService.challengeDetails.exercises" scope="col">{{exer.exerciseName}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let entry of challengeService.executions | keyvalue ">
+
+    <th scope="row">{{entry.key | date: 'dd MMM yyyy'}}</th>
+    <td *ngFor="let exec of entry.value">
+      {{exec.repeats}}
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>
+
+
+

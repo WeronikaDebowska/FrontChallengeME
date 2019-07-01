@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from './services/auth.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,10 +18,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.auth.isAuthenticated()) {
-      this.router.navigate(['/challenges']);
-    } else {
-      this.router.navigate(['/login']);
-    }
+    this.router.navigate(['/challenges']);
+    // if (this.auth.isAuthenticated()) {     //TODO if/else instead of navigating to challenges directly
+    //   this.router.navigate(['/challenges']);
+    // } else {
+    //   this.router.navigate(['/login']);
+    // }
   }
 }

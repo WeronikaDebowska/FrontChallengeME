@@ -32,3 +32,10 @@ export interface IParticipant {
   challengeRole: string;
 }
 
+export interface IExecution {
+  // execId: number;
+  exerId: number;
+  date: string;
+  repeats: number;
+}
+

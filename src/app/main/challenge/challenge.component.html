@@ -4,12 +4,14 @@
       <h4 class="mb-0">{{challengeService.challengeDetails.challengeName | uppercase}}
         <span
           class="badge badge-{{statusMessage === 'ACTIVE' ? 'primary' : statusMessage === 'EXPECTED' ? 'teal' : 'secondary' }}">{{statusMessage}}</span>
+        <span
+          class="badge badge-{{challengeService.challengeStatus === 'accepted' ? 'primary' : challengeService.challengeStatus  === 'pending' ? 'teal' : 'secondary' }}">{{challengeStatus | uppercase }}</span>
       </h4>
       <p class="duration">Start: {{challengeService.challengeDetails.start | date: 'dd MMM yyyy'}}</p>
       <p class="duration">Finish: {{challengeService.challengeDetails.finish |  date: 'dd MMM yyyy'}}</p>
     </div>
 
-    <circle-progress [percent]="challengeService.challengeDetails.challengeRealisation">
+    <circle-progress [percent]=challengeService.challengeDetails.challengeRealization>
     </circle-progress>
   </div>
   <div class="card-body">
@@ -24,17 +26,18 @@
            role="tab" routerLink="{{url}}/participants" routerLinkActive="active">Participants</a>
       </li>
       <li class="nav-item">
-        <a aria-controls="stats" aria-selected="false" class="nav-link" data-toggle="tab" id="stats-tab" role="tab"
-           routerLink="{{url}}/stats" routerLinkActive="active">Stats</a>
-      </li>
-      <li class="nav-item">
         <a aria-controls="exercises" aria-selected="false" class="nav-link" data-toggle="tab" id="exercises-tab"
            role="tab" routerLink="{{url}}/exercises" routerLinkActive="active">Exercises</a>
       </li>
       <li class="nav-item">
-        <a aria-controls="edit" aria-selected="false" class="nav-link" data-toggle="tab" id="edit-tab" role="tab"
-           routerLink="{{url}}/edit" routerLinkActive="active">Edit</a>
+        <a aria-controls="stats" aria-selected="false" class="nav-link" data-toggle="tab" id="stats-tab" role="tab"
+           routerLink="{{url}}/stats" routerLinkActive="active">Stats</a>
       </li>
+
+      <!--<li class="nav-item">-->
+      <!--<a aria-controls="edit" aria-selected="false" class="nav-link" data-toggle="tab" id="edit-tab" role="tab"-->
+      <!--routerLink="{{url}}/edit" routerLinkActive="active">Edit</a>-->
+      <!--</li>-->
     </ul>
 
     <router-outlet></router-outlet>

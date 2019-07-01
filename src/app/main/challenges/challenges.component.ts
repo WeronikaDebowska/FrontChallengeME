@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {IChallenge} from '../../shared/interfaces';
 
@@ -19,10 +20,13 @@ export class ChallengesComponent implements OnInit {
   searchField;
   statusSelectField;
   activitySelectField;
+  createMode;
+
 
   constructor(
     public user: UserService,
     private api: ApiService,
+    private router: Router,
     private timesService: TimestampService
   ) {
   }
@@ -32,6 +36,7 @@ export class ChallengesComponent implements OnInit {
     this.searchField = document.querySelector('#search');
     this.statusSelectField = document.querySelector('#status');
     this.activitySelectField = document.querySelector('#activity');
+    this.createMode = false;
   }
 
   filter(): void {
@@ -102,4 +107,13 @@ export class ChallengesComponent implements OnInit {
     this.statusSelectField.value = this.statusSelectField.children[0].value;
     this.activitySelectField.value = this.activitySelectField.children[0].value;
   }
+
+  saveChallenge(challenge: any): void {
+    this.api.saveChallenge(this.user.id, challenge.name, challenge.start, challenge.finish).subscribe();
+  }
+
+  private switchMode(): void {
+    this.createMode = !this.createMode;
+  }
+
 }

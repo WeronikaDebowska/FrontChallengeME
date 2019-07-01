@@ -9,12 +9,14 @@ import {ApiService} from '../../services/api.service';
 export class ChallengeService {
 
   challengeDetails: IChallenge;
+  executions: { [key: number]: { [key: number]: number } };     // TODO everything works but seems like executions have different structure
 
   constructor(
     public user: UserService,
     public apiService: ApiService,
   ) {
   }
+
 
   loadChallengeDetails(id: string): void {
     this.challengeDetails = this.user.challenges.find(challenge => challenge.challengeId === +id);
@@ -38,7 +40,24 @@ export class ChallengeService {
       });
   }
 
+  loadExecutions(): void {
+    this.apiService.getExecutionsForChallenge(this.user.id, this.challengeDetails.challengeId)
+      .subscribe((executions: { [key: number]: { [key: number]: number } }) => {
+          this.executions = executions;
+        },
+        err => {
+          this.apiService.handleError(err);
+        });
+  }
+
   setStatus(status: boolean): void {
     this.challengeDetails.status = status;
+  }
+
+  saveExecution(exerId: string, date: string, repeats: string): void {
+    const userId = this.user.id;
+    const challId = this.challengeDetails.challengeId;
+    this.apiService.saveExecution(userId, challId, exerId, date, repeats).subscribe();
+
   }
 }

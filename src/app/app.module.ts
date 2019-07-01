@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -12,17 +12,20 @@ import {LoginComponent} from './login/login.component';
 import {TokenInterceptor} from './shared/token.interceptor';
 import {LoginFormComponent} from './login/login-form/login-form.component';
 import {RegisterFormComponent} from './login/register-form/register-form.component';
+import {EditComponent} from './edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ServicesModule,
     SharedModule,

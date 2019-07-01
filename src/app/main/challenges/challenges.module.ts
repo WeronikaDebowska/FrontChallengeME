@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {ChallengesComponent} from './challenges.component';
 import {CreateComponent} from './create/create.component';
@@ -12,7 +13,9 @@ import {ChallengesListComponent} from './challenges-list/challenges-list.compone
     ChallengesListComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ChallengesModule {

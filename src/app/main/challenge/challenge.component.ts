@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {ChallengeService} from './challenge.service';
 import {TimestampService} from '../../services/timestamp.service';
 
+// import {ChallengesComponent} from '../challenges/challenges.component';
+
 @Component({
   selector: 'app-challenge',
   templateUrl: './challenge.component.html',
@@ -14,10 +16,14 @@ export class ChallengeComponent implements OnInit {
   url: string;
   statusMessage: string;
 
+  // @Input() challengeStatus: string;
+
+
   constructor(
     private route: ActivatedRoute,
     private challengeService: ChallengeService,
-    private timestamp: TimestampService
+    private timestamp: TimestampService,
+    // private challehgesComponent: ChallengesComponent
   ) {
   }
 
@@ -26,9 +32,11 @@ export class ChallengeComponent implements OnInit {
     this.getIdFromParams();
     this.url = `/challenge/${this.id}`;
     this.challengeService.loadChallengeDetails(this.id);
+    this.setChallengeStatus();
+    // this.setChallengeStatus();
     this.setStatus();
-
-    console.log(this.challengeService.challengeDetails);
+    this.challengeService.loadExecutions();
+    this.challengeService.loadExercises();
   }
 
   getIdFromParams(): void {
@@ -36,6 +44,7 @@ export class ChallengeComponent implements OnInit {
       this.id = params['id'];
     });
   }
+
 
   setStatus(): void {
     const hasStarted = this.timestamp.isBefore(this.challengeService.challengeDetails.start);
@@ -51,5 +60,11 @@ export class ChallengeComponent implements OnInit {
       this.challengeService.setStatus(true);
       this.statusMessage = 'ACTIVE';
     }
+  }
+
+
+  setChallengeStatus(): void {
+    // this.challengesComponent.setChallengeStatus(this.id);
+
   }
 }
